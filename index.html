@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flight Sim Fuel Planner</title>
+  <meta name="description" content="Estimate trip fuel, reserves and flight time for airliners in flight simulators.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>✈ Flight Sim Fuel Planner</h1>
+    <p>Quick fuel and time estimates for airliners in Microsoft Flight Simulator, X-Plane and others.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Aircraft</h2>
+      <label>Type
+        <select id="aircraft"></select>
+      </label>
+      <p id="ac-info" class="hint"></p>
+
+      <h2>Route</h2>
+      <div class="row">
+        <label>Departure (ICAO)
+          <input id="dep" list="airport-list" value="VECC" autocomplete="off">
+        </label>
+        <button id="swap" type="button" title="Swap airports">⇄</button>
+        <label>Arrival (ICAO)
+          <input id="arr" list="airport-list" value="VIDP" autocomplete="off">
+        </label>
+      </div>
+      <datalist id="airport-list"></datalist>
+      <label>Or enter distance manually (NM)
+        <input id="manual-dist" type="number" min="0" placeholder="leave empty to use airports">
+      </label>
+
+      <h2>Load</h2>
+      <div class="row">
+        <label>Passengers
+          <input id="pax" type="number" min="0">
+        </label>
+        <label>Cargo (kg)
+          <input id="cargo" type="number" min="0" value="1500">
+        </label>
+      </div>
+
+      <h2>Conditions &amp; reserves</h2>
+      <div class="row">
+        <label>Headwind (kt)
+          <input id="wind" type="number" value="0" title="Use a negative number for a tailwind">
+        </label>
+        <label>Alternate distance (NM)
+          <input id="alt-dist" type="number" min="0" value="150">
+        </label>
+      </div>
+      <div class="row">
+        <label>Contingency (%)
+          <input id="cont" type="number" min="0" value="5">
+        </label>
+        <label>Extra fuel (kg)
+          <input id="extra" type="number" min="0" value="0">
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="units">
+        <button data-unit="kg" class="active" type="button">kg</button>
+        <button data-unit="lb" type="button">lb</button>
+      </div>
+      <h2>Fuel plan</h2>
+      <div id="results"></div>
+    </section>
+  </main>
+
+  <footer>
+    Estimates for flight simulation only. Not for real-world flight planning.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
